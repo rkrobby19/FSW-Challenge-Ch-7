@@ -31,9 +31,25 @@ module.exports = {
                 UserId: req.body.UserId,
                 server: req.body.server,
             });
+
+            let rounds = [1, 2, 3];
+            let firstRound = await PlayerChoice.create({
+                RoomId: roomServer.id,
+                round: rounds[0],
+            });
+            let secondRound = await PlayerChoice.create({
+                RoomId: roomServer.id,
+                round: rounds[1],
+            });
+            let thirdRound = await PlayerChoice.create({
+                RoomId: roomServer.id,
+                round: rounds[2],
+            });
+
             res.status(201).send({
                 msg: `Room succesfully created`,
                 room: roomServer,
+                plyerChoice: [firstRound, secondRound, thirdRound],
             });
         } catch (error) {
             console.log(error);

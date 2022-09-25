@@ -17,7 +17,7 @@
                 <thead>
                     <tr class="border-bottom text-center">
                         <th>
-                            <span class="ml-2">#</span>
+                            <span class="ml-2">Id</span>
                         </th>
                         <th>
                             <span class="ml-2">Username</span>
@@ -31,26 +31,33 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% for (let i = 0; i<users.length; i++) { %>
+                    <% for (let i = 0; i<users.data.length; i++) { %>
                     <tr class="border-bottom text-center">
                         <td>
                             <div class="p-2">
                                 <span class="font-weight-bold"
-                                    ><%= users[i].username %></span
+                                    ><%= users.data[i].id %></span
                                 >
                             </div>
                         </td>
                         <td>
                             <div class="p-2">
                                 <span class="font-weight-bold"
-                                    ><%= users[i].email %></span
+                                    ><%= users.data[i].username %></span
                                 >
                             </div>
                         </td>
                         <td>
                             <div class="p-2">
                                 <span class="font-weight-bold"
-                                    ><%= users[i].role %></span
+                                    ><%= users.data[i].email %></span
+                                >
+                            </div>
+                        </td>
+                        <td>
+                            <div class="p-2">
+                                <span class="font-weight-bold"
+                                    ><%= users.data[i].role %></span
                                 >
                             </div>
                         </td>
