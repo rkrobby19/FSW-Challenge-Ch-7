@@ -1,0 +1,23 @@
+body {
+    background-color: #b3e5fc;
+}
+
+button {
+    margin-bottom: 1rem;
+}
+
+.register a {
+    text-decoration: none;
+    color: white;
+}
+
+.card-1 {
+    border: none;
+    border-radius: 10px;
+    width: 100%;
+    background-color: #fff;
+}
+
+.icons i {
+    margin-left: 20px;
+}

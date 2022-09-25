@@ -1,14 +1,20 @@
 const express = require("express");
+const app = express();
 const router = express.Router();
 const bodyParser = require("body-parser");
 const jsonParser = bodyParser.json();
 
+app.use(bodyParser.urlencoded({ extended: true }));
+
 const registerPage = require("../controllers/registerPage");
 const loginPage = require("../controllers/loginPage");
+const adminPage = require("../controllers/adminPage.js");
 
 router.get("/register", jsonParser, registerPage.index);
 
 router.get("/login", loginPage.index);
 router.post("/login", jsonParser, loginPage.login);
+
+router.get("/admin/dashboard", adminPage.index);
 
 module.exports = router;
