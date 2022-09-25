@@ -10,7 +10,9 @@ opts.secretOrKey = "Auth Key";
 passport.use(
     new JwtStrategy(opts, async function (jwt_payload, done) {
         const userData = await User.findOne({
-            where: { userName: jwt_payload.userName },
+            where: {
+                email: jwt_payload.email,
+            },
         });
         if (userData) {
             return done(null, {

@@ -1,3 +1,12 @@
+const validateLogin = () => {
+    const data = localStorage.getItem("token-login");
+    if (data === null) {
+        location.href = "/login";
+    }
+};
+
+validateLogin();
+
 const deleteAllDataHandler = () => {
     console.log(`Delete data`);
 };

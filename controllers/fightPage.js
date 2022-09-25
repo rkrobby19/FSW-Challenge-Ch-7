@@ -6,7 +6,7 @@ module.exports = {
         res.render("fight", {
             tittle: "Fight Room",
             css: "../public/stylesheets/fight.css",
-            js: "",
+            js: "../public/javascripts/fight.js",
             // rooms: data,
         });
     },

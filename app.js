@@ -3,6 +3,8 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const passport = require("passport");
+require("./utils/passport");
 
 const indexRouter = require("./routes/index");
 
@@ -22,6 +24,8 @@ app.use(cookieParser());
 
 app.use("/public", express.static(path.join(__dirname, "public")));
 app.use("/utils", express.static(path.join(__dirname, "utils")));
+
+app.use(passport.initialize());
 
 app.use("/", indexRouter);
 

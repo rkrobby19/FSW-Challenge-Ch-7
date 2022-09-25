@@ -1,3 +1,18 @@
+const validateLogin = async () => {
+    const token = localStorage.getItem("token-login");
+    if (token === null) {
+        location.href = "/login";
+    }
+    const resp = await fetch("http://localhost:3000/home", {
+        method: "GET",
+        headers: {
+            Authorization: token,
+        },
+    });
+};
+
+validateLogin();
+
 const createNewRoom = async () => {
     let regServer = document.getElementById("inputServer").value;
 

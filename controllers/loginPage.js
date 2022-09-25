@@ -34,8 +34,10 @@ module.exports = {
             });
         }
 
+        console.log(userData);
+
         const payload = {
-            userName: userData.username,
+            username: userData.username,
             email: userData.email,
             role: userData.role,
         };
@@ -47,6 +49,7 @@ module.exports = {
         res.send({
             message: "Login Success",
             token: `Bearer ${token}`,
+            user: payload,
         });
     },
 };
