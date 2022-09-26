@@ -48,7 +48,9 @@
                     <label>Round 3 (Rock / Paper / Scissor)</label>
                 </div>
 
-                <a onclick="submit( <%= room.data.server %> )">
+                <a
+                    onclick="submit( <%= room.data.server %> , <%= room.data.id %> )"
+                >
                     <span></span>
                     <span></span>
                     <span></span>

@@ -53,5 +53,13 @@ router.put(
     authorization.player,
     apiControllers.updatePlayerChoices
 );
+// * Get Update on Game Result
+router.put(
+    "/player-choices/:roomid/get-result",
+    jsonParser,
+    passport.authenticate("jwt", { session: false }),
+    authorization.player,
+    apiControllers.updateChoicesResult
+);
 
 module.exports = router;

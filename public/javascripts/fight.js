@@ -7,7 +7,7 @@ const validateLogin = () => {
 
 validateLogin();
 
-const submit = async (server) => {
+const submit = async (server, id) => {
     let reqSide = document.getElementById("playerSide").value;
     console.log(reqSide);
     let reqRound1 = document.getElementById("round1").value;
@@ -30,6 +30,17 @@ const submit = async (server) => {
                 round2: reqRound2,
                 round3: reqRound3,
             }),
+        }
+    );
+
+    let result = await fetch(
+        `http://localhost:3000/api/player-choices/${id}/get-result`,
+        {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: localStorage.getItem("token-login"),
+            },
         }
     );
     console.log(server);

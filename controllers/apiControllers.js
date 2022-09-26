@@ -28,7 +28,7 @@ module.exports = {
     createRoom: async (req, res) => {
         try {
             let roomServer = await Room.create({
-                UserId: req.body.UserId,
+                UserId: req.user.id,
                 server: req.body.server,
             });
 
@@ -183,6 +183,77 @@ module.exports = {
                 msg: `Data Updated`,
                 room: room,
                 playerChoices: [round1, round2, round3],
+            });
+        } catch (error) {
+            console.log(error);
+            res.send(`cant update data`);
+        }
+    },
+
+    updateChoicesResult: async (req, res) => {
+        try {
+            const data = await PlayerChoice.findAll({
+                where: {
+                    RoomId: req.params.roomid,
+                },
+            });
+
+            // ! condition check
+            // * Data not full filled
+            console.log(data[0].player1);
+            if (data[0].player1 == null || data[0].player2 == null) {
+                console.log(`data kosong`);
+                return res.status(404).send({
+                    msg: `Waiting for opponent`,
+                });
+            }
+
+            let round1 = await PlayerChoice.findOne({
+                where: { RoomId: req.params.roomid, round: 1 },
+            });
+
+            let round2 = await PlayerChoice.findOne({
+                where: { RoomId: req.params.roomid, round: 2 },
+            });
+
+            let round3 = await PlayerChoice.findOne({
+                where: { RoomId: req.params.roomid, round: 3 },
+            });
+
+            // ! Game Logic
+            let result = [];
+            const gameResult = (player1, player2) => {
+                if (player1 == player2) return result.push("Draw");
+                if (player1 == "batu")
+                    return player2 == "gunting"
+                        ? result.push("player1")
+                        : result.push("player2");
+                if (player1 == "kertas")
+                    return player2 == "batu"
+                        ? result.push("player1")
+                        : result.push("player2");
+                if (player1 == "gunting")
+                    return player2 == "kertas"
+                        ? result.push("player1")
+                        : result.push("player2");
+            };
+
+            gameResult(round1.player1, round1.player2);
+            gameResult(round2.player1, round2.player2);
+            gameResult(round3.player1, round3.player2);
+
+            round1.winner = result[0];
+            round2.winner = result[1];
+            round3.winner = result[2];
+
+            await round1.save();
+            await round2.save();
+            await round3.save();
+
+            res.send({
+                round1: round1,
+                round2: round2,
+                round3: round3,
             });
         } catch (error) {
             console.log(error);
