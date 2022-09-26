@@ -122,6 +122,30 @@ module.exports = {
         });
     },
 
+    getPlayerHistories: async (req, res) => {
+        try {
+            let asPlayer1 = await Room.findAll({
+                where: {
+                    player1: req.user.username,
+                },
+            });
+            let asPlayer2 = await Room.findAll({
+                where: {
+                    player2: req.user.username,
+                },
+            });
+
+            res.send({
+                Player1: asPlayer1,
+                Player2: asPlayer2,
+            });
+        } catch (error) {
+            res.send({
+                msg: `${error}`,
+            });
+        }
+    },
+
     // ! UPDATE
     updateRoomPlayer: async (req, res) => {
         try {

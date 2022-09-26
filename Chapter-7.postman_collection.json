@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "2463c4fd-9a9d-4fbc-b27e-9d70cdfc8477",
+		"_postman_id": "70ceff28-35eb-4d87-9873-1e85f8dca714",
 		"name": "Chapter-7",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "22491407"
@@ -39,7 +39,10 @@
 			"name": "RENDER Player dashboard",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": ""
+				}
 			},
 			"response": []
 		},
@@ -178,7 +181,10 @@
 			"name": "Get All Rooms Server (API)",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": ""
+				}
 			},
 			"response": []
 		},
@@ -219,6 +225,14 @@
 						"2000"
 					]
 				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Player Game Histories (API)",
+			"request": {
+				"method": "GET",
+				"header": []
 			},
 			"response": []
 		},

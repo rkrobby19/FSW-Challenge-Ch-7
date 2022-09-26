@@ -36,6 +36,14 @@ router.get("/rooms/:server", apiControllers.getRoomByServer);
 // * Read PlayerChoices
 router.get("/player-choices/:serverid", apiControllers.getAllPlayerChoices);
 
+// * Read Player Histories
+router.get(
+    "/user/game-history",
+    passport.authenticate("jwt", { session: false }),
+    authorization.player,
+    apiControllers.getPlayerHistories
+);
+
 // ! UPDATE
 // * Player in Room
 router.put(
