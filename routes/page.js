@@ -19,23 +19,10 @@ router.get("/register", jsonParser, registerPage.index);
 router.get("/login", loginPage.index);
 router.post("/login", jsonParser, loginPage.login);
 
-router.get(
-    "/home",
-    passport.authenticate("jwt", { session: false }),
-    playerPage.index
-);
+router.get("/home", playerPage.index);
 
-router.get(
-    "/fight",
-    passport.authenticate("jwt", { session: false }),
-    fightPage.index
-);
+router.get("/fight/:server", fightPage.index);
 
-router.get(
-    "/admin/dashboard",
-    passport.authenticate("jwt", { session: false }),
-    authorization.superUser,
-    adminPage.index
-);
+router.get("/admin/dashboard", adminPage.index);
 
 module.exports = router;

@@ -1,4 +1,13 @@
-const submit = async (server, username) => {
+const validateLogin = () => {
+    const data = localStorage.getItem("token-login");
+    if (data === null) {
+        location.href = "/login";
+    }
+};
+
+validateLogin();
+
+const submit = async (server) => {
     let reqSide = document.getElementById("playerSide").value;
     console.log(reqSide);
     let reqRound1 = document.getElementById("round1").value;
@@ -8,14 +17,14 @@ const submit = async (server, username) => {
     let reqRound3 = document.getElementById("round3").value;
     console.log(reqRound3);
     let resp = await fetch(
-        `http://localhost:3000/api//player-choices/${server}`,
+        `http://localhost:3000/api/player-choices/${server}`,
         {
-            method: "POST",
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json",
+                Authorization: localStorage.getItem("token-login"),
             },
             body: JSON.stringify({
-                username: username,
                 playerSide: reqSide,
                 round1: reqRound1,
                 round2: reqRound2,
@@ -23,9 +32,10 @@ const submit = async (server, username) => {
             }),
         }
     );
-
-    // console.log(resp);
-    if (resp.status == 202) {
+    console.log(server);
+    console.log(resp.status);
+    if (resp.status === 200) {
         alert(`Thanks for your Choices`);
+        window.location.href = "/home";
     }
 };

@@ -3,7 +3,8 @@
     <%- include('partials/head') %>
     <body>
         <div class="login-box">
-            <h2>Challenge Room (Id)</h2>
+            <h2>Challenge Room</h2>
+            <h2><%= room.data.server %></h2>
 
             <form>
                 <div class="user-box">
@@ -47,11 +48,7 @@
                     <label>Round 3 (Rock / Paper / Scissor)</label>
                 </div>
 
-                <!-- <div class="user-box">
-                    <input type="password" name="" required="" />
-                    <label>Password</label>
-                </div> -->
-                <a onclick="submit()">
+                <a onclick="submit( <%= room.data.server %> )">
                     <span></span>
                     <span></span>
                     <span></span>

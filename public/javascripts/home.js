@@ -1,14 +1,8 @@
-const validateLogin = async () => {
-    const token = localStorage.getItem("token-login");
-    if (token === null) {
+const validateLogin = () => {
+    const data = localStorage.getItem("token-login");
+    if (data === null) {
         location.href = "/login";
     }
-    const resp = await fetch("http://localhost:3000/home", {
-        method: "GET",
-        headers: {
-            Authorization: token,
-        },
-    });
 };
 
 validateLogin();
@@ -36,4 +30,7 @@ const createNewRoom = async () => {
 
 const selectHandler = async (id) => {
     let ans = confirm("Join this room server?");
+    if (ans) {
+        location.href = `/fight/${id}`;
+    }
 };

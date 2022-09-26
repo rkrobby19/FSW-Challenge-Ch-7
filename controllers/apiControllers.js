@@ -140,6 +140,8 @@ module.exports = {
 
     updatePlayerChoices: async (req, res) => {
         try {
+            console.log(req.user);
+
             let round1 = await PlayerChoice.findOne({
                 where: { RoomId: req.params.roomid, round: 1 },
             });
@@ -161,12 +163,12 @@ module.exports = {
             console.log(room);
 
             if (req.body.playerSide == "Player 1") {
-                room.player1 = req.body.username;
+                room.player1 = req.user.username;
                 round1.player1 = req.body.round1;
                 round2.player1 = req.body.round2;
                 round3.player1 = req.body.round3;
             } else {
-                room.player2 = req.body.username;
+                room.player2 = req.user.username;
                 round1.player2 = req.body.round1;
                 round2.player2 = req.body.round2;
                 round3.player2 = req.body.round3;

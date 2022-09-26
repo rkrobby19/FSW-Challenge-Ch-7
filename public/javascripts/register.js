@@ -23,6 +23,7 @@ const register = async () => {
     // console.log(resp);
     if (resp.status == 201) {
         alert("You are registered");
+        location.href = "/login";
     }
     // TODO: create relocate windows
 };
