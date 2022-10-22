@@ -224,7 +224,7 @@ module.exports = {
 
             // ! condition check
             // * Data not full filled
-            console.log(data[0].player1);
+            
             if (data[0].player1 == null || data[0].player2 == null) {
                 console.log(`data kosong`);
                 return res.status(404).send({
@@ -248,18 +248,21 @@ module.exports = {
             let result = [];
             const gameResult = (player1, player2) => {
                 if (player1 == player2) return result.push("Draw");
-                if (player1 == "batu")
-                    return player2 == "gunting"
-                        ? result.push("player1")
-                        : result.push("player2");
-                if (player1 == "kertas")
-                    return player2 == "batu"
-                        ? result.push("player1")
-                        : result.push("player2");
-                if (player1 == "gunting")
-                    return player2 == "kertas"
-                        ? result.push("player1")
-                        : result.push("player2");
+                if (player1 == "batu" && player2 == "gunting"){
+                    return result.push("player1")
+                } else {
+                    return result.push("player2");
+                };
+                if (player1 == "kertas" && player2 == "batu"){
+                    return result.push("player1");
+                } else {
+                    return result.push("player2");
+                };
+                if (player1 == "gunting" && player2 == "kertas"){
+                    return result.push("player1");
+                } else {
+                    return result.push("player2");
+                };
             };
 
             gameResult(round1.player1, round1.player2);
